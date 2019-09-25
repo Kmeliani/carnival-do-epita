@@ -15,6 +15,8 @@ class KmelianiPlayer extends Player
     protected $opponentSide;
     protected $result;
 
+    protected $lastWasWin = false;
+
     public function getChoice()
     {
         // -------------------------------------    -----------------------------------------------------
@@ -42,20 +44,32 @@ class KmelianiPlayer extends Player
         // -------------------------------------    -----------------------------------------------------
         
         if ($this->result->getLastChoiceFor($this->mySide) != 0) {
+            if ($this->result->getLastScoreFor($this->mySide))
+                $this->$lastWasWin = true;
+            else
+                $this->$lastWasWin = false;
             if ($this->result->getLastChoiceFor($this->mySide) == parent::rockChoice()) {
-                return parent::scissorsChoice();
+                if ($this->$lastWasWin)
+                    return parent::rockChoice();
+                else
+                    return parent::scissorsChoice();
             }
             else if ($this->result->getLastChoiceFor($this->mySide) == parent::paperChoice()) {
-                return parent::rockChoice();
-            }
-            else if ($this->result->getLastChoiceFor($this->mySide) == parent::scissorsChoice()) {
+                if ($this->$lastWasWin)
+                    return parent::paperChoice();
+                else
+                    return parent::rockChoice();
+
                 return parent::paperChoice();
             }
-            else {
-                return parent::rockChoice();
+            else if ($this->result->getLastChoiceFor($this->mySide) == parent::scissorsChoice()) {
+                if ($this->$lastWasWin)
+                    return parent::scissorsChoice();
+                else
+                    return parent::paperChoice();
             }
         }
 
-        return parent::rockChoice();
+        return parent::scissorsChoice();
     }
 };

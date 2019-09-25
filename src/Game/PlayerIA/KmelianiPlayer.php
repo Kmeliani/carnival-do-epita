@@ -43,29 +43,29 @@ class KmelianiPlayer extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
         
-        if ($this->result->getLastChoiceFor($this->mySide) != 0) {
-            if ($this->result->getLastScoreFor($this->mySide))
-                $this->$lastWasWin = false;
-            else
-                $this->$lastWasWin = true;
+        if ($this->result->getLastChoiceFor($this->mySide)) {
+            // if ($this->result->getLastScoreFor($this->mySide))
+            //     $this->$lastWasWin = false;
+            // else
+            //     $this->$lastWasWin = true;
 
             if ($this->result->getLastChoiceFor($this->mySide) == parent::rockChoice()) {
-                if ($this->$lastWasWin)
-                    return parent::scissorsChoice();
-                else
-                    return parent::paperChoice();
+                // if ($this->$lastWasWin)
+                return parent::scissorsChoice();
+                // else
+                    // return parent::paperChoice();
             }
             else if ($this->result->getLastChoiceFor($this->mySide) == parent::paperChoice()) {
-                if ($this->$lastWasWin)
-                    return parent::rockChoice();
-                else
-                    return parent::scissorsChoice();
+                // if ($this->$lastWasWin)
+                return parent::rockChoice();
+                // else
+                    // return parent::scissorsChoice();
             }
             else if ($this->result->getLastChoiceFor($this->mySide) == parent::scissorsChoice()) {
-                if ($this->$lastWasWin)
-                    return parent::paperChoice();
-                else
-                    return parent::rockChoice();
+                // if ($this->$lastWasWin)
+                return parent::paperChoice();
+                // else
+                    // return parent::rockChoice();
             }
         }
 

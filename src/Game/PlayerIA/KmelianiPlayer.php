@@ -41,6 +41,12 @@ class KmelianiPlayer extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
         
-        return parent::scissorsChoice();            
+        if (!($this->result->getLastChoiceFor($this->mySide)))
+            return parent::rockChoice();
+        else {
+            
+            return parent::scissorsChoice();    
+        }
+        
   }
 };

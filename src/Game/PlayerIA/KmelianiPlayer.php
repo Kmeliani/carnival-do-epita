@@ -44,8 +44,18 @@ class KmelianiPlayer extends Player
         if (!($this->result->getLastChoiceFor($this->mySide)))
             return parent::rockChoice();
         else {
-            
-            return parent::scissorsChoice();    
+            // si l'oposant a joué pierre
+            if ($this->result->getLastChoiceFor($this->opponentSide) == parent::rockChoice()) {
+                return parent::paperChoice();
+            }
+            // si l'oposant a joué papier
+            else if ($this->result->getLastChoiceFor($this->opponentSide) == parent::paperChoice()) {
+                return parent::scissorsChoice();
+            }
+            // si l'oposant a joué sciseau
+            else ($this->result->getLastChoiceFor($this->opponentSide) == parent::scissorsChoice()) {
+                return parent::rockChoice();
+            }  
         }
         
   }

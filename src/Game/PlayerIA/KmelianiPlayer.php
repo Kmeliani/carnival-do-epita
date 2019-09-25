@@ -17,6 +17,23 @@ class KmelianiPlayer extends Player
 
     protected $lastWasWin = false;
 
+    protected $i = 0;
+
+    // 0 -> scissors
+    // 1 -> paper
+    // 2 -> rock
+    public function getValFromIndex($index) {
+        if ($in == 0) {
+            return 'scissors';
+        }
+        else if ($in = 1) {
+            return 'paper';
+        }
+        else {
+            return 'rock';
+        }
+    }
+
     public function getChoice()
     {
         // -------------------------------------    -----------------------------------------------------
@@ -44,28 +61,20 @@ class KmelianiPlayer extends Player
         // -------------------------------------    -----------------------------------------------------
         
         if ($this->result->getLastChoiceFor($this->mySide)) {
-            // if ($this->result->getLastScoreFor($this->mySide))
-            //     $this->$lastWasWin = false;
-            // else
-            //     $this->$lastWasWin = true;
+            if (!$this->result->getLastScoreFor($this->mySide))
+                $this->$i = $this->$i + 1;
+
+            if ($this->$i == 3)
+                $this->$i = 0;
 
             if ($this->result->getLastChoiceFor($this->mySide) == parent::rockChoice()) {
-                // if ($this->$lastWasWin)
-                return parent::scissorsChoice();
-                // else
-                    // return parent::paperChoice();
+                return $this->getValFromIndex($this->$i);
             }
             else if ($this->result->getLastChoiceFor($this->mySide) == parent::paperChoice()) {
-                // if ($this->$lastWasWin)
-                return parent::rockChoice();
-                // else
-                    // return parent::scissorsChoice();
+                return $this->getValFromIndex($this->$i);
             }
             else if ($this->result->getLastChoiceFor($this->mySide) == parent::scissorsChoice()) {
-                // if ($this->$lastWasWin)
                 return parent::paperChoice();
-                // else
-                    // return parent::rockChoice();
             }
         }
 

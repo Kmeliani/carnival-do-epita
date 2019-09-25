@@ -48,23 +48,24 @@ class KmelianiPlayer extends Player
                 $this->$lastWasWin = true;
             else
                 $this->$lastWasWin = false;
+
             if ($this->result->getLastChoiceFor($this->mySide) == parent::rockChoice()) {
                 if ($this->$lastWasWin)
                     return parent::scissorsChoice();
                 else
-                    return parent::rockChoice();
+                    return parent::paperChoice();
             }
             else if ($this->result->getLastChoiceFor($this->mySide) == parent::paperChoice()) {
                 if ($this->$lastWasWin)
                     return parent::rockChoice();
                 else
-                    return parent::paperChoice();
+                    return parent::scissorsChoice();
             }
             else if ($this->result->getLastChoiceFor($this->mySide) == parent::scissorsChoice()) {
                 if ($this->$lastWasWin)
                     return parent::paperChoice();
                 else
-                    return parent::scissorsChoice();
+                    return parent::rockChoice();
             }
         }
 

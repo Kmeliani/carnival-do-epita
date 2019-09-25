@@ -41,10 +41,7 @@ class KmelianiPlayer extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
         
-        if (($this->result->getLastChoiceFor($this->mySide)) == 0) {
-            return parent::paperChoice();
-        }
-        else {
+        if ($this->result->getLastChoiceFor($this->opponentSide) != 0) {
             if ($this->result->getLastChoiceFor($this->opponentSide) == parent::rockChoice()) {
                 return parent::paperChoice();
             }
@@ -55,6 +52,7 @@ class KmelianiPlayer extends Player
                 return parent::rockChoice();
             }
         }
+
         return parent::paperChoice();   
     }
 };

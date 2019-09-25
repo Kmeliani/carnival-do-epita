@@ -45,9 +45,9 @@ class KmelianiPlayer extends Player
         
         if ($this->result->getLastChoiceFor($this->mySide) != 0) {
             if ($this->result->getLastScoreFor($this->mySide))
-                $this->$lastWasWin = true;
-            else
                 $this->$lastWasWin = false;
+            else
+                $this->$lastWasWin = true;
 
             if ($this->result->getLastChoiceFor($this->mySide) == parent::rockChoice()) {
                 if ($this->$lastWasWin)

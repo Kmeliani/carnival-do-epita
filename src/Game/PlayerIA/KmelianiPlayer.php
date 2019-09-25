@@ -69,6 +69,6 @@ class KmelianiPlayer extends Player
             }
         }
 
-        return parent::rockChoice();
+        return parent::scissorsChoice();
     }
 };
